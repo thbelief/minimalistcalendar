@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/colorPrimary">
+
+        <ImageButton
+            android:id="@+id/note_details_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/icon_bg"
+            android:src="@drawable/ic_note_details_back"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/note_details_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="40dp"
+            android:text="Title"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:layout_marginStart="100dp" />
+
+        <ImageButton
+            android:id="@+id/note_details_delete"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/icon_bg"
+            android:src="@drawable/ic_note_details_delete"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/note_details_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="-18dp"
+        android:src="@drawable/ic_note_details_edit"
+        app:fabSize="mini"
+        app:pressedTranslationZ="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp" />
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="5dp"
+        app:cardPreventCornerOverlap="true"
+        android:background="@drawable/shape_rectangle_textview"
+        app:cardElevation="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="vertical"
+        app:cardUseCompatPadding="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="26dp"
+                    android:background="@drawable/ic_tab_date"
+                    android:layout_marginStart="26dp" />
+
+                <TextView
+                    android:id="@+id/note_details_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="40dp"
+                    android:text="2021年2月3日"
+                    android:textColor="#000"
+                    android:paddingStart="40dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="26dp"
+                    android:background="@drawable/ic_note_color"
+                    android:layout_marginStart="26dp" />
+
+                <TextView
+                    android:id="@+id/note_details_degree"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="40dp"
+                    android:text="紧急程度"
+                    android:textColor="#000"
+                    android:paddingStart="40dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="26dp"
+                    android:background="@drawable/ic_note_alarm" />
+
+                <TextView
+                    android:id="@+id/note_details_alarm"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="40dp"
+                    android:text="是否提醒"
+                    android:textColor="#000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="26dp"
+                    android:background="@drawable/ic_note_content" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:id="@+id/note_details_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginRight="20dp"
+                        android:paddingLeft="40dp"
+                        android:text="备注"
+                        android:textSize="20sp"
+                        android:textColor="#000"
+                        android:paddingStart="40dp" />
+                </ScrollView>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

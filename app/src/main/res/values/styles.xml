@@ -1,0 +1,52 @@
+<resources>
+    <!--首页imageview的样式-->
+    <style name="hpImageButtonStyle">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:background">@drawable/icon_bg</item>
+    </style>
+    <!-- 整个app的style-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- 全局浮动按钮-->
+    <style name="floatingActionsButton_fab_style">
+        <item name="android:background">@drawable/fab_background</item>
+        <item name="android:textColor">@color/fab_textcolor</item>
+    </style>
+
+    <!-- 创建记事和纪念日标题栏的style    -->
+    <style name="ActionBarTitleTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="ActionBarTextViewStyle">
+        <item name="android:layout_width">10dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/icon_bg</item>
+    </style>
+    <!-- 底部导航栏button样式-->
+    <style name="TabButtonStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/tab_color_selector</item>
+    </style>
+</resources>

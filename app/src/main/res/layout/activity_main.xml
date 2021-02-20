@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main_layout"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/viewpager">
+
+    </androidx.viewpager.widget.ViewPager>
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/float_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:pressedTranslationZ="16dp"
+        android:layout_marginBottom="70dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="bottom|right"
+        app:fab_expandDirection="up"
+        fab:fab_labelStyle="@style/floatingActionsButton_fab_style">
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/action_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_icon="@drawable/ic_notepad_floatfab"
+            fab:fab_size="mini"
+            fab:fab_title="创建记事" />
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/action_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_icon="@drawable/ic_memorialday_floayfab"
+            fab:fab_size="mini"
+            fab:fab_title="创建纪念日" />
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:id="@+id/tab_radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:background="#ffffff">
+
+            <RadioButton
+                android:id="@+id/date_tab"
+                style="@style/TabButtonStyle"
+                android:checked="true"
+                android:drawableTop="@drawable/tab_date_selector"
+                android:text="日期" />
+
+            <RadioButton
+                android:id="@+id/note_tab"
+                style="@style/TabButtonStyle"
+                android:drawableTop="@drawable/tab_note_selector"
+                android:text="记录" />
+
+            <RadioButton
+                android:id="@+id/holiday_tab"
+                style="@style/TabButtonStyle"
+                android:drawableTop="@drawable/tab_unique_selector"
+                android:text="节假" />
+
+            <RadioButton
+                android:id="@+id/settings_tab"
+                style="@style/TabButtonStyle"
+                android:drawableTop="@drawable/tab_setting_selector"
+                android:text="设置" />
+        </RadioGroup>
+    </RelativeLayout>
+
+
+</FrameLayout>

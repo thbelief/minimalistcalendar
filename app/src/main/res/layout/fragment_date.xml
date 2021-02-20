@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:id="@+id/date_fragment_Lin"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="350dp"
+                android:layout_height="match_parent"
+                android:id="@+id/switch_calendar"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/title_month"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+
+                    android:textColor="#fff" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/title_packup"
+                    android:layout_gravity="center"
+                    android:onClick="fold"
+                    android:background="@drawable/ic_arrow_up"/>
+            </LinearLayout>
+            <ImageButton
+                android:id="@+id/back_today"
+                style="@style/hpImageButtonStyle"
+                android:onClick="today"
+                android:src="@drawable/ic_back"/>
+
+        </LinearLayout>
+
+        <com.necer.view.WeekBar
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+        <com.necer.calendar.Miui9Calendar
+            android:id="@+id/miui9Calendar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00000000"
+            app:calendarHeight="300dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                app:fastScrollEnabled="true"
+                app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
+                app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"
+                app:fastScrollVerticalThumbDrawable="@drawable/thumb_drawable"
+                app:fastScrollVerticalTrackDrawable="@drawable/line_drawable"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </com.necer.calendar.Miui9Calendar>
+
+
+    </LinearLayout>
+</FrameLayout>

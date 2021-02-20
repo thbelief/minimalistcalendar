@@ -1,0 +1,69 @@
+<level-list xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item android:maxLevel="100" android:drawable="@drawable/weather100"/>
+    <item android:maxLevel="101" android:drawable="@drawable/weather101"/>
+    <item android:maxLevel="102" android:drawable="@drawable/weather102"/>
+    <item android:maxLevel="103" android:drawable="@drawable/weather103"/>
+    <item android:maxLevel="104" android:drawable="@drawable/weather104"/>
+    <item android:maxLevel="150" android:drawable="@drawable/weather150"/>
+    <item android:maxLevel="153" android:drawable="@drawable/weather153"/>
+    <item android:maxLevel="154" android:drawable="@drawable/weather154"/>
+
+    <item android:maxLevel="300" android:drawable="@drawable/weather300"/>
+    <item android:maxLevel="301" android:drawable="@drawable/weather301"/>
+    <item android:maxLevel="302" android:drawable="@drawable/weather302"/>
+    <item android:maxLevel="303" android:drawable="@drawable/weather303"/>
+    <item android:maxLevel="304" android:drawable="@drawable/weather304"/>
+    <item android:maxLevel="305" android:drawable="@drawable/weather305"/>
+    <item android:maxLevel="306" android:drawable="@drawable/weather306"/>
+    <item android:maxLevel="307" android:drawable="@drawable/weather307"/>
+    <item android:maxLevel="308" android:drawable="@drawable/weather308"/>
+    <item android:maxLevel="309" android:drawable="@drawable/weather309"/>
+    <item android:maxLevel="310" android:drawable="@drawable/weather310"/>
+    <item android:maxLevel="311" android:drawable="@drawable/weather311"/>
+    <item android:maxLevel="312" android:drawable="@drawable/weather312"/>
+    <item android:maxLevel="313" android:drawable="@drawable/weather313"/>
+    <item android:maxLevel="314" android:drawable="@drawable/weather314"/>
+    <item android:maxLevel="315" android:drawable="@drawable/weather315"/>
+    <item android:maxLevel="316" android:drawable="@drawable/weather316"/>
+    <item android:maxLevel="317" android:drawable="@drawable/weather317"/>
+    <item android:maxLevel="318" android:drawable="@drawable/weather318"/>
+    <item android:maxLevel="350" android:drawable="@drawable/weather350"/>
+    <item android:maxLevel="351" android:drawable="@drawable/weather351"/>
+    <item android:maxLevel="399" android:drawable="@drawable/weather399"/>
+
+    <item android:maxLevel="400" android:drawable="@drawable/weather400"/>
+    <item android:maxLevel="401" android:drawable="@drawable/weather401"/>
+    <item android:maxLevel="402" android:drawable="@drawable/weather402"/>
+    <item android:maxLevel="403" android:drawable="@drawable/weather403"/>
+    <item android:maxLevel="404" android:drawable="@drawable/weather404"/>
+    <item android:maxLevel="405" android:drawable="@drawable/weather405"/>
+    <item android:maxLevel="406" android:drawable="@drawable/weather406"/>
+    <item android:maxLevel="407" android:drawable="@drawable/weather407"/>
+    <item android:maxLevel="408" android:drawable="@drawable/weather408"/>
+    <item android:maxLevel="409" android:drawable="@drawable/weather409"/>
+    <item android:maxLevel="410" android:drawable="@drawable/weather410"/>
+    <item android:maxLevel="456" android:drawable="@drawable/weather456"/>
+    <item android:maxLevel="457" android:drawable="@drawable/weather457"/>
+    <item android:maxLevel="499" android:drawable="@drawable/weather499"/>
+
+    <item android:maxLevel="500" android:drawable="@drawable/weather500"/>
+    <item android:maxLevel="501" android:drawable="@drawable/weather501"/>
+    <item android:maxLevel="502" android:drawable="@drawable/weather502"/>
+    <item android:maxLevel="503" android:drawable="@drawable/weather503"/>
+    <item android:maxLevel="504" android:drawable="@drawable/weather504"/>
+    <item android:maxLevel="507" android:drawable="@drawable/weather507"/>
+    <item android:maxLevel="508" android:drawable="@drawable/weather508"/>
+    <item android:maxLevel="509" android:drawable="@drawable/weather509"/>
+    <item android:maxLevel="510" android:drawable="@drawable/weather510"/>
+    <item android:maxLevel="511" android:drawable="@drawable/weather511"/>
+    <item android:maxLevel="512" android:drawable="@drawable/weather512"/>
+    <item android:maxLevel="513" android:drawable="@drawable/weather513"/>
+    <item android:maxLevel="514" android:drawable="@drawable/weather514"/>
+    <item android:maxLevel="515" android:drawable="@drawable/weather515"/>
+    <item android:maxLevel="900" android:drawable="@drawable/weather900"/>
+    <item android:maxLevel="901" android:drawable="@drawable/weather901"/>
+    <item android:maxLevel="999" android:drawable="@drawable/weather999"/>
+
+
+</level-list>

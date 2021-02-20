@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/date_fragment_Fra"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:id="@+id/date_plus_fragment_Lin"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/date_plus_fragment_rl"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="@color/colorPrimary">
+
+            <TextView
+                android:id="@+id/dpf_MonthDay"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="2月6号"
+                android:paddingStart="16dp" />
+
+            <LinearLayout
+                android:id="@+id/this_l"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/dpf_MonthDay"
+                android:orientation="vertical"
+                android:paddingBottom="12dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="6dp"
+                android:paddingTop="12dp">
+
+                <TextView
+                    android:id="@+id/dpf_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="2021"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/dpf_lunar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="农历"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/fold_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_arrow_up"
+                android:layout_toRightOf="@id/this_l"
+                android:layout_marginLeft="5dp"
+                android:layout_centerVertical="true"
+                />
+            <TextView
+                android:id="@+id/week_num_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/fold_calendar"
+                android:layout_marginLeft="5dp"
+                android:text="周次： 1"
+                android:textSize="15sp"
+                android:textColor="#ffffff"
+                android:visibility="gone"/>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/weather_l"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/week_num_tv"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/ic_weather"
+                    android:src="@drawable/weatherlist"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:id="@+id/tv_weather"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"
+                        android:text="晴"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:id="@+id/tv_temperature"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"
+                        android:text="10℃"/>
+                </LinearLayout>
+            </LinearLayout>
+            <FrameLayout
+                android:id="@+id/fl_today"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/bg_ripple"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="12dp">
+
+                <ImageView
+                    android:id="@+id/ib_calendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_calendar"
+                    android:tint="#ffffff" />
+
+                <TextView
+                    android:id="@+id/dpf_today"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:text="6"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp" />
+            </FrameLayout>
+        </RelativeLayout>
+
+        <com.haibin.calendarview.CalendarLayout
+            android:id="@+id/calendarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:orientation="vertical"
+            app:calendar_content_view_id="@+id/recyclerView"
+            app:calendar_show_mode="both_month_week_view"
+            app:default_status="expand">
+
+            <com.haibin.calendarview.CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:calendar_padding="10dp"
+                app:current_month_lunar_text_color="#CFCFCF"
+                app:current_month_text_color="#333333"
+                app:other_month_text_color="#e1e1e1"
+                app:scheme_text="假"
+                app:scheme_text_color="#333"
+                app:scheme_theme_color="#333"
+                app:selected_text_color="#fff"
+                app:selected_theme_color="@color/colorPrimary"
+                app:week_background="#fff"
+                app:week_text_color="#111"
+                app:week_text_size="20sp"
+                app:week_line_background="#dedede"
+                app:month_view_scrollable="true"
+                app:week_view_scrollable="true"
+                app:month_view_show_mode="mode_fix"
+                app:month_view_auto_select_day="last_select_day"
+                app:day_text_size="20sp"
+                app:lunar_text_size="15sp"
+                app:calendar_height="60dp"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                app:fastScrollEnabled="true"
+                app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
+                app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"
+                app:fastScrollVerticalThumbDrawable="@drawable/thumb_drawable"
+                app:fastScrollVerticalTrackDrawable="@drawable/line_drawable"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </androidx.recyclerview.widget.RecyclerView>
+            　
+        </com.haibin.calendarview.CalendarLayout>
+    </LinearLayout>
+
+</FrameLayout>
