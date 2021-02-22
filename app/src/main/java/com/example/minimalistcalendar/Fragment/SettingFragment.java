@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -50,12 +51,12 @@ import es.dmoral.toasty.Toasty;
 
 public class SettingFragment extends Fragment {
 
-    private final String TAG="MainActivity";
     private TextView teachWeek_tv;
     private TextView workDay_tv;
     private TextView calculateDate_tv;
     private TextView user_tv;
     private TextView about_tv;
+    private TextView website_tv;
     private SwitchButton display_weather_sb;
     private SwitchButton synchronize_sb;
     //QQ登陆点击
@@ -65,8 +66,6 @@ public class SettingFragment extends Fragment {
     private  Tencent tencent;
     //调用SDK已经封装好的接口时，例如：登录、快速支付登录、应用分享、应用邀请等接口，需传入该回调的实例。
     private IUiListener listener;
-    //QQ包名
-    private static final String      PACKAGE_QQ = "com.tencent.mobileqq";
     //存储的开关key
     private String display_weather_key="isDisplayWeather";
     private String synchronize_key="isSynchronize";
@@ -124,11 +123,20 @@ public class SettingFragment extends Fragment {
         synchronize_sb=getActivity().findViewById(R.id.synchronize_sb);
         login_state=getActivity().findViewById(R.id.settings_fragement_login_state);
         about_tv=getActivity().findViewById(R.id.aboutme_tv);
+        website_tv=getActivity().findViewById(R.id.website_tv);
 
         //QQ控件绑定事件
         qqImage=getActivity().findViewById(R.id.login);
         qqName=getActivity().findViewById(R.id.login_name);
 
+        website_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("http://159.75.108.98:8080/JavaWeb_war/");    //设置跳转的网站
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
         about_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -212,13 +220,17 @@ public class SettingFragment extends Fragment {
             }
         });
         //QQ登陆相关
-        tencent=Tencent.createInstance("1111445713",getActivity().getApplicationContext());
+        tencent=Tencent.createInstance("101933219",getActivity().getApplicationContext());
+
         qqImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(IshaveNetWork.getIsNetWork(getActivity())!=0){
-                    Toasty.info(getActivity(),"审核还没过，暂停使用",Toasty.LENGTH_SHORT).show();
-                    //loginQQ();
+                    //Toasty.info(getActivity(),"审核还没过，暂停使用",Toasty.LENGTH_SHORT).show();
+                    //如果session无效，就开始做登录操作
+                    if (!tencent.isSessionValid()) {
+                        loginQQ();
+                    }
                 }else{
                     Toasty.warning(getActivity(),"当前无网络 无法登陆",Toasty.LENGTH_SHORT).show();
                 }
@@ -286,7 +298,7 @@ public class SettingFragment extends Fragment {
             @Override
             public void onComplete(Object object) {
 
-                Log.e(TAG, "登录成功: " + object.toString() );
+                Log.d("MainActivity", "登录成功: " + object.toString() );
 
                 JSONObject jsonObject = (JSONObject) object;
                 try {
@@ -297,9 +309,7 @@ public class SettingFragment extends Fragment {
 
                     tencent.setAccessToken(token, expires);
                     tencent.setOpenId(openId);
-                    Log.e(TAG, "token: " + token);
-                    Log.e(TAG, "expires: " + expires);
-                    Log.e(TAG, "openId: " + openId);
+
 
                     //获取个人信息
                     getQQInfo();
@@ -311,22 +321,20 @@ public class SettingFragment extends Fragment {
             @Override
             public void onError(UiError uiError) {
                 //登录失败
-                Log.e(TAG, "登录失败" + uiError.errorDetail);
-                Log.e(TAG, "登录失败" + uiError.errorMessage);
-                Log.e(TAG, "登录失败" + uiError.errorCode + "");
+                Log.d("MainActivity", "登录失败 ");
 
             }
 
             @Override
             public void onCancel() {
                 //登录取消
-                Log.e(TAG, "登录取消");
+                Log.d("MainActivity", "登录取消" );
 
             }
 
             @Override
             public void onWarning(int i) {
-
+                Log.d("MainActivity", String.valueOf(i));
             }
         };
         //context上下文、第二个参数SCOPO 是一个String类型的字符串，表示一些权限
@@ -346,7 +354,7 @@ public class SettingFragment extends Fragment {
         info.getUserInfo(new IUiListener() {
             @Override
             public void onComplete(Object object) {
-                Log.e(TAG, "个人信息：" + object.toString());
+                Log.d("MainActivity", "个人信息: " + object.toString() );
                 //infoText.setText(object.toString());
                 //头像
                 //String avatar = ((JSONObject) object).getString("figureurl_2");
@@ -357,6 +365,7 @@ public class SettingFragment extends Fragment {
 
             @Override
             public void onError(UiError uiError) {
+                Log.d("MainActivity", String.valueOf(uiError));
             }
 
             @Override
@@ -371,36 +380,19 @@ public class SettingFragment extends Fragment {
     }
 
     /**
-     * 回调必不可少,官方文档未说明
+     * 回调必不可少
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //腾讯QQ回调
         Tencent.onActivityResultData(requestCode, resultCode, data, listener);
-        if (requestCode == Constants.REQUEST_API) {
-            if (resultCode == Constants.REQUEST_LOGIN) {
+        if(requestCode == Constants.REQUEST_API) {
+            if(resultCode == Constants.REQUEST_LOGIN) {
                 Tencent.handleResultData(data, listener);
             }
         }
     }
 
-    /**
-     * true 安装了相应包名的app
-     */
-    private boolean hasApp(Context context, String packName) {
-        boolean is = false;
-        List<PackageInfo> packages = context.getPackageManager()
-                .getInstalledPackages(0);
-        for (int i = 0; i < packages.size(); i++) {
-            PackageInfo packageInfo = packages.get(i);
-            String packageName = packageInfo.packageName;
-            if (packageName.equals(packName)) {
-                is = true;
-            }
-        }
-        return is;
-    }
     public void loadSettings(){
         //进入该页面的时候先加载设置 如果设置有的话 比如展示天气按钮
         //加载设置进来
