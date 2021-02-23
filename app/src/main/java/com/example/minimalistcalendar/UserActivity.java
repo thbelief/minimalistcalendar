@@ -17,6 +17,8 @@ import com.example.minimalistcalendar.Network.DoPostLogin;
 import com.example.minimalistcalendar.Network.DoPostRegister;
 import com.example.minimalistcalendar.Network.IshaveNetWork;
 import com.example.minimalistcalendar.SharePreferences.MySharedPreferences;
+import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.interfaces.OnInputConfirmListener;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -111,9 +113,22 @@ public class UserActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(isOk()){
                     if(IshaveNetWork.getIsNetWork(UserActivity.this)!=0){
-                        //注册
-                        DoPostRegister.register(UserActivity.this,account_number_edit.getText().toString(),
-                                account_password_edit.getText().toString());
+                        //确认找回信息
+                        new XPopup.Builder(UserActivity.this).asInputConfirm("找回/修改标识", "输入特殊文字标识用于找回/修改密码",
+                                new OnInputConfirmListener() {
+                                    @Override
+                                    public void onConfirm(String text) {
+                                        //注册
+                                        //判断是否标记字符为空 如果是的话 置为无
+                                        if(text.isEmpty()){
+                                            text="无";
+                                        }
+                                        DoPostRegister.register(UserActivity.this,account_number_edit.getText().toString(),
+                                                account_password_edit.getText().toString(),text);
+                                    }
+                                })
+                                .show();
+
                     }else{
                         Toasty.warning(UserActivity.this,"当前无网络 无法注册",Toasty.LENGTH_SHORT).show();
                     }

@@ -25,14 +25,16 @@ import okhttp3.Response;
 public class DoPostRegister {
     private static String url="http://159.75.108.98:8080/JavaWeb_war/Registered";
 
-    public static void register(Context context, String account_number, String account_password) {
+    //log是找回密码的标识
+    public static void register(Context context, String account_number, String account_password,String userMark) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 Log.d("MainActivity", "开始注册");
                 FormBody formBody = new FormBody.Builder().
                         add("account_number", account_number).
-                        add("account_password",account_password).build();
+                        add("account_password",account_password).
+                        add("userMark",userMark).build();
                 OkHttpClient client =new OkHttpClient();
                 Request request=new Request.Builder()
                         .url(url)

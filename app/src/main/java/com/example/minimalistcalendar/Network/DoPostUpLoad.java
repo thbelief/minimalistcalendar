@@ -27,6 +27,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;
@@ -61,12 +62,24 @@ public class DoPostUpLoad {
                 DatabaseFunctions databaseFunctions=new DatabaseFunctions(context);
                 JsonArray jsonArray=new JsonArray();
                 try {
-                    //这里要把用户ID一起放进去 才可以做到同步
-                    jsonArray= JSONUtil.toJSONArray(databaseFunctions.getAllDataBean(),Integer.parseInt(userID));
+                    //这里需要判断是否是空的 如果是空的 添加一个空值让服务器识别到 然后删除该用户的所有记事
+                    //因为空的提交过去服务器获取不到 会发生错误 所以我直接写了一个校验位 为-1的时候默认删除
+                    if(databaseFunctions.getAllDataBean().isEmpty()){
+                        //如果是空的话。
+                        DataBean dataBean=new DataBean();
+                        //这里的id为-1代表的是校验位 服务器识别到-1会直接默认执行清空操作
+                        dataBean.setId(-1);
+                        List<DataBean> list=new ArrayList<DataBean>();
+                        list.add(dataBean);
+                        jsonArray=JSONUtil.toJSONArray(list,Integer.parseInt(userID));
+                    }else{
+                        //这里要把用户ID一起放进去 才可以做到同步
+                        jsonArray= JSONUtil.toJSONArray(databaseFunctions.getAllDataBean(),Integer.parseInt(userID));
+                    }
                     //Log.d("MainActivity","数据"+jsonArray);
                     RequestBody requestBody = RequestBody.create(JSON, String.valueOf(jsonArray));
                     OkHttpClient client =new OkHttpClient();
-                    Request request=new Request.Builder()
+                    Request request=new Builder()
                             .url(url)
                             .post(requestBody)
                             .build();
@@ -83,7 +96,7 @@ public class DoPostUpLoad {
                         public void onResponse(Call call, Response response) throws IOException {
                             //Log.d("MainActivity","返回："+response.body().string());
                             //不能直接toast 在子线程 中
-                            ToastUtil.ChildThreadSuccessToast(context,"上传成功");
+                            ToastUtil.ChildThreadSuccessToast(context,response.body().string());
                         }
                     });
                 } catch (JSONException e) {

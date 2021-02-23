@@ -5,7 +5,6 @@ import android.os.Looper;
 import android.util.Log;
 
 import com.example.minimalistcalendar.EventBus.UpdateLoginEventBus;
-import com.example.minimalistcalendar.EventBus.UpdateNoteEventBus;
 import com.example.minimalistcalendar.SharePreferences.MySharedPreferences;
 import com.example.minimalistcalendar.Util.ToastUtil;
 
@@ -24,22 +23,23 @@ import okhttp3.Response;
 /**
  * @ProjectName: MinimalistCalendar
  * @Package: com.example.minimalistcalendar.Network
- * @ClassName: DoPostLogin
+ * @ClassName: DoPostModifyPassword
  * @Description: 作用
  * @Author: 作者名
- * @CreateDate: 2021/2/19 13:31
+ * @CreateDate: 2021/2/23 11:22
  */
-public class DoPostLogin {
-    private static String url="http://159.75.108.98:8080/JavaWeb_war/Login";
+public class DoPostModifyPassword {
+    private static String url="http://159.75.108.98:8080/JavaWeb_war/ModifyPassword";
 
-    public static void login(Context context,String account_number,String account_password) {
+    public static void modify(Context context,String account_number,String account_password,String userMark) {
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.d("MainActivity", "开始登陆");
+                Log.d("MainActivity", "开始修改");
                 FormBody formBody = new FormBody.Builder().
                         add("account_number", account_number).
+                        add("userMark", userMark).
                         add("account_password",account_password).build();
                 OkHttpClient client =new OkHttpClient();
                 Request request=new Request.Builder()
@@ -52,24 +52,20 @@ public class DoPostLogin {
                     public void onFailure(Call call, IOException e) {
                         //Log.d("MainActivity","请求失败");
                         //不能直接toast 在子线程 中
-                        ToastUtil.ChildThreadErrorToast(context,"登陆网络请求失败");
+                        ToastUtil.ChildThreadErrorToast(context,"修改密码网络请求失败");
                     }
 
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
-                        //不能直接toast 在子线程 中
-                        //ToastUtil.ChildThreadSuccessToast(context,"登陆成功");
                         Looper.prepare();
                         String resp=response.body().string();
                         //返回的是userID
-                        if(resp.equals("账号不存在或者密码错误")){
-                            Toasty.error(context,resp,Toasty.LENGTH_SHORT).show();
-                        }else{
-                            //这个时候是ID
-                            Toasty.success(context,"登录成功",Toasty.LENGTH_SHORT).show();
-                            saveData(context,resp,account_number,account_password);
-                            //通知该更新UI了
-                            EventBus.getDefault().post(new UpdateLoginEventBus("updateLoginState"));
+                        if(resp.equals("输入错误 修改失败")){
+                            Toasty.error(context,"输入格式有误 修改失败",Toasty.LENGTH_SHORT).show();
+                        }else if(resp.equals("账号或标识错误")){
+                            Toasty.error(context,"账号或标识错误",Toasty.LENGTH_SHORT).show();
+                        }else if(resp.equals("密码修改成功")){
+                            Toasty.success(context,resp,Toasty.LENGTH_SHORT).show();
                         }
                         Looper.loop();
                     }
@@ -78,12 +74,5 @@ public class DoPostLogin {
 
             }
         }).start();
-    }
-    public static void saveData(Context context,String userID,String account_number,String account_password){
-        //Toasty.info(context,"进来了",Toasty.LENGTH_SHORT).show();
-        MySharedPreferences.saveData("isLoginStatus","true", context);
-        MySharedPreferences.saveData("userID",userID, context);
-        MySharedPreferences.saveData("account_number",account_number,context);
-        MySharedPreferences.saveData("account_password",account_password,context);
     }
 }

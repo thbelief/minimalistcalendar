@@ -20,6 +20,7 @@ import com.example.minimalistcalendar.AboutActivity;
 import com.example.minimalistcalendar.CalculateDateActivity;
 import com.example.minimalistcalendar.EventBus.UpdateLoginEventBus;
 import com.example.minimalistcalendar.EventBus.UpdateNoteEventBus;
+import com.example.minimalistcalendar.ModifyPasswordActivity;
 import com.example.minimalistcalendar.Network.DoPostDownload;
 import com.example.minimalistcalendar.Network.DoPostUpLoad;
 import com.example.minimalistcalendar.Network.IshaveNetWork;
@@ -57,6 +58,7 @@ public class SettingFragment extends Fragment {
     private TextView user_tv;
     private TextView about_tv;
     private TextView website_tv;
+    private TextView modify_password_tv;
     private SwitchButton display_weather_sb;
     private SwitchButton synchronize_sb;
     //QQ登陆点击
@@ -124,11 +126,20 @@ public class SettingFragment extends Fragment {
         login_state=getActivity().findViewById(R.id.settings_fragement_login_state);
         about_tv=getActivity().findViewById(R.id.aboutme_tv);
         website_tv=getActivity().findViewById(R.id.website_tv);
+        modify_password_tv=getActivity().findViewById(R.id.modify_password_tv);
 
         //QQ控件绑定事件
         qqImage=getActivity().findViewById(R.id.login);
         qqName=getActivity().findViewById(R.id.login_name);
 
+        modify_password_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //打开修改密码页面
+                Intent intent = new Intent(getActivity(), ModifyPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
         website_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
