@@ -98,28 +98,11 @@ public class DateFragmentPlus extends Fragment {
     //当数据下载完成之后再绘制UI
     private Handler handler;
 
-    @Nullable
-    @Override
-    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
-        //进入Fragment的时候
-//        if(enter&&!isUpdateData){
-//            isUpdateData=true;
-//        }else{
-//            isUpdateData=false;
-//        }
-        return super.onCreateAnimation(transit, enter, nextAnim);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-//        isUpdateData=false;
-    }
-
     @Override
     public void onResume() {
         //只有第一次之后才可以直接加载
         if(isUpdateData){
+            mCalendarView.scrollToCurrent();
             loadNotes();
         }
         super.onResume();
