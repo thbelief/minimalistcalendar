@@ -7,8 +7,12 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.minimalistcalendar.EventBus.UpdateNoteEventBus;
 import com.example.minimalistcalendar.SharePreferences.MySharedPreferences;
 import com.kyleduo.switchbutton.SwitchButton;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +74,8 @@ public class WorkDayActivity extends AppCompatActivity {
                         MySharedPreferences.saveData(turnOnFunction,"false",WorkDayActivity.this);
                         linearLayout.setVisibility(View.GONE);
                     }
+                    //通知UI更新 绘制
+                    EventBus.getDefault().post(new UpdateNoteEventBus("update"));
                     Toasty.success(WorkDayActivity.this,"保存成功",Toasty.LENGTH_SHORT).show();
                     //Toast.makeText(WorkDayActivity.this,"保存成功",Toast.LENGTH_SHORT).show();
                     finish();
