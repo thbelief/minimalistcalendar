@@ -50,7 +50,7 @@ import retrofit2.http.Url;
  * @CreateDate: 2021/2/17 10:04
  */
 public class DoPostUpLoad {
-    private static String url="http://159.75.108.98:8080/JavaWeb_war/UploadData";
+    private static String url="http://www.thbelief.xyz/UploadData";
     //上传本地所有的记事数据 然后将服务器上的该用户的数据替换掉
     public static void uploadAllData(Context context,String userID) {
         MediaType JSON = MediaType.parse("application/json;charset=utf-8");

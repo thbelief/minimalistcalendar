@@ -30,7 +30,7 @@ import okhttp3.Response;
  * @CreateDate: 2021/2/19 13:31
  */
 public class DoPostLogin {
-    private static String url="http://159.75.108.98:8080/JavaWeb_war/Login";
+    private static String url="http://www.thbelief.xyz/Login";
 
     public static void login(Context context,String account_number,String account_password) {
 

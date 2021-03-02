@@ -23,7 +23,7 @@ import okhttp3.Response;
  * @CreateDate: 2021/2/19 13:36
  */
 public class DoPostRegister {
-    private static String url="http://159.75.108.98:8080/JavaWeb_war/Registered";
+    private static String url="http://www.thbelief.xyz/Registered";
 
     //log是找回密码的标识
     public static void register(Context context, String account_number, String account_password,String userMark) {

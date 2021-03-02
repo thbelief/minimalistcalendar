@@ -143,7 +143,7 @@ public class SettingFragment extends Fragment {
         website_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse("http://159.75.108.98:8080/JavaWeb_war/");    //设置跳转的网站
+                Uri uri = Uri.parse("http://www.thbelief.xyz");    //设置跳转的网站
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }

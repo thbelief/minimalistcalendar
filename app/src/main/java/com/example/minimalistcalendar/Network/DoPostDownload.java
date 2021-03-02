@@ -44,7 +44,7 @@ import okhttp3.Response;
  */
 public class DoPostDownload {
     //下载 从服务器把数据下载下来
-    private static String url="http://159.75.108.98:8080/JavaWeb_war/DownloadData";
+    private static String url="http://www.thbelief.xyz/DownloadData";
     public static void downloadAllData(Context context,String userID) {
         new Thread(new Runnable() {
             @Override

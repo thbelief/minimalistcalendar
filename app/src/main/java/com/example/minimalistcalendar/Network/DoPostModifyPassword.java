@@ -29,7 +29,7 @@ import okhttp3.Response;
  * @CreateDate: 2021/2/23 11:22
  */
 public class DoPostModifyPassword {
-    private static String url="http://159.75.108.98:8080/JavaWeb_war/ModifyPassword";
+    private static String url="http://www.thbelief.xyz/ModifyPassword";
 
     public static void modify(Context context,String account_number,String account_password,String userMark) {
 
