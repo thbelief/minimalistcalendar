@@ -425,18 +425,38 @@ public class DateFragmentPlus extends Fragment {
             //加载数据进去
             android.icu.util.Calendar calendar = null;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                calendar = android.icu.util.Calendar.getInstance();
-                //localMonthLastNum是本月最后一天的号数
-                for(int i=1;i<=localMonthLastNum();i++){
-                    calendar.set(mCalendarView.getCurYear(),mCalendarView.getCurMonth(),i);
-                    if(isInWorkDays(calendar.get(android.icu.util.Calendar.DAY_OF_WEEK)-1)){
+                //calendar = android.icu.util.Calendar.getInstance();
+                java.util.Calendar c = java.util.Calendar.getInstance();
+                c.set(mCalendarView.getCurYear(), mCalendarView.getCurMonth(), 0); //输入类型为int类型
+                //Toast.makeText(getActivity(), ""+c.get(java.util.Calendar.DAY_OF_MONTH), Toast.LENGTH_SHORT).show();
+                //c.get(java.util.Calendar.DAY_OF_MONTH)是本月一共多少天
+                for(int i=1;i<=c.get(java.util.Calendar.DAY_OF_MONTH);i++){
+                    //calendar.set(year,month,i);
+                    //这里用solar来获取周几 用calendar要出错。
+                    Solar solar=Solar.fromYmd(mCalendarView.getCurYear(), mCalendarView.getCurMonth(),i);//0~6 从周日开始
+                    //Log.d("MainActivity", i+"号是周"+solar.getWeek()+" 年 - 月 "+year+" "+month);
+                    if(isInWorkDays(solar.getWeek())){
                         //Toast.makeText(getActivity(), "测试的东西"+mCalendarView.getCurYear()+"月"+i, Toast.LENGTH_SHORT).show();
-                        map.put(getSchemeCalendar(mCalendarView.getCurYear(),mCalendarView.getCurMonth(),i, 0xFFff6f00, "工").toString(),
-                                getSchemeCalendar(mCalendarView.getCurYear(),mCalendarView.getCurMonth(),i, 0xFFff6f00, "工"));
+                        map.put(getSchemeCalendar(mCalendarView.getCurYear(), mCalendarView.getCurMonth(),i, 0xFFff6f00, "工").toString(),
+                                getSchemeCalendar(mCalendarView.getCurYear(), mCalendarView.getCurMonth(),i, 0xFFff6f00, "工"));
+                        //schemeToCalendar();
                     }
                 }
 
             }
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                calendar = android.icu.util.Calendar.getInstance();
+//                //localMonthLastNum是本月最后一天的号数
+//                for(int i=1;i<=localMonthLastNum();i++){
+//                    calendar.set(mCalendarView.getCurYear(),mCalendarView.getCurMonth(),i);
+//                    if(isInWorkDays(calendar.get(android.icu.util.Calendar.DAY_OF_WEEK)-1)){
+//                        //Toast.makeText(getActivity(), "测试的东西"+mCalendarView.getCurYear()+"月"+i, Toast.LENGTH_SHORT).show();
+//                        map.put(getSchemeCalendar(mCalendarView.getCurYear(),mCalendarView.getCurMonth(),i, 0xFFff6f00, "工").toString(),
+//                                getSchemeCalendar(mCalendarView.getCurYear(),mCalendarView.getCurMonth(),i, 0xFFff6f00, "工"));
+//                    }
+//                }
+//
+//            }
         }
         //显示周次的 需要配合设置
         if(MySharedPreferences.getData("isTurnOnFunction",getActivity()).equals("true")){

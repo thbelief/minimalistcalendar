@@ -103,4 +103,7 @@ dependencies {
     implementation 'com.lxj:xpopup:2.2.19'
     //Toast框架
     implementation 'com.github.GrenderG:Toasty:1.5.0'
+
+//    //轮播图
+//    implementation 'com.youth.banner:banner:2.1.0'
 }

@@ -3,14 +3,10 @@ package com.example.minimalistcalendar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
-import android.app.AlarmManager;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -23,45 +19,25 @@ import com.baidu.location.LocationClientOption;
 import com.example.minimalistcalendar.Adapter.RecycleAdapter;
 import com.example.minimalistcalendar.Bean.WeatherResponseBean;
 import com.example.minimalistcalendar.Bean.WeatherTodayBean;
-import com.example.minimalistcalendar.DateBase.DatabaseFunctions;
-import com.example.minimalistcalendar.Fragment.DateFragment;
 import com.example.minimalistcalendar.Fragment.DateFragmentPlus;
 import com.example.minimalistcalendar.Fragment.HolidayFragment;
 import com.example.minimalistcalendar.Fragment.NoteFragment;
 import com.example.minimalistcalendar.Fragment.SettingFragment;
 import com.example.minimalistcalendar.Network.DoPostDownload;
-import com.example.minimalistcalendar.Network.DoPostUpLoad;
 import com.example.minimalistcalendar.Network.IshaveNetWork;
 import com.example.minimalistcalendar.SharePreferences.MySharedPreferences;
-import com.example.minimalistcalendar.Util.AlarmManagerUtil;
 import com.example.minimalistcalendar.Util.DialogUtil;
 import com.example.minimalistcalendar.Util.LoginUtil;
-import com.example.minimalistcalendar.Util.ToastUtil;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.lxj.xpopup.XPopup;
-import com.lxj.xpopup.interfaces.OnConfirmListener;
-import com.necer.calendar.BaseCalendar;
 import com.necer.calendar.Miui9Calendar;
-import com.necer.enumeration.CalendarState;
-import com.necer.enumeration.DateChangeBehavior;
-import com.necer.listener.OnCalendarChangedListener;
 import com.necer.enumeration.CheckModel;
-import com.necer.utils.HolidayUtil;
-import com.necer.utils.LunarUtil;
-import com.nlf.calendar.Lunar;
 import com.tbruyelle.rxpermissions3.RxPermissions;
-
-import org.joda.time.LocalDate;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import android.view.View;
 import android.widget.Toast;
@@ -71,11 +47,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.multidex.MultiDex;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 
-import es.dmoral.toasty.Toasty;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -123,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             DialogUtil.messageDialog(MainActivity.this,"Tips", getString(R.string.precautions));
         }
 
-        //ndroid App中的方法数超过65535时，如果往下兼容到低版本设备时，就会报编译错误，尤其在引入一些jar包和搞了一个modle进来之后容易出现这个错误
+        //Android App中的方法数超过65535时，如果往下兼容到低版本设备时，就会报编译错误，尤其在引入一些jar包或者搞了一个modle进来之后容易出现这个错误
         MultiDex.install(this);
 
         //悬浮按钮的点击事件
@@ -141,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 createMemorialDay();
             }
         });
-        //返回主页面的时候收拢floatfab 不然还是展开的
+        //返回主页面的时候收拢floatFab 不然还是展开的
         float_fab_menu=(FloatingActionsMenu)findViewById(R.id.float_fab);
         //fragment切换
         list=new ArrayList<>(4);

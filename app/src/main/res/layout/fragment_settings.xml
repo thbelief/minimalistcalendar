@@ -21,7 +21,6 @@
                  android:textColor="#fff"
                  android:gravity="center"/>
          </LinearLayout>
-
         <LinearLayout
             android:visibility="gone"
             android:layout_width="match_parent"
